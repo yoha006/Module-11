@@ -35,8 +35,68 @@ To write a Python program that:
 
 ## 💻 Program
 Add Code here
-
+```
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.prev = None
+        self.next = None
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        last_node = self.head
+        while last_node.next:
+            last_node = last_node.next
+        last_node.next = new_node
+        new_node.prev = last_node
+    def search(self, key):
+        current_node = self.head
+        while current_node:
+            if current_node.data == key:
+                return True
+            current_node = current_node.next
+        return False
+    def traverse(self):
+        current_node = self.head
+        if not current_node:
+            print("The list is empty.")
+            return
+        print("Doubly Linked List:")
+        while current_node:
+            print(current_node.data, end=" <-> " if current_node.next else "")
+            current_node = current_node.next
+        print()
+dll = DoublyLinkedList()
+n = int(input("Enter the number of elements you want to insert: "))
+for i in range(n):
+    value = input(f"Enter value {i + 1} to insert at the beginning: ")
+    dll.insert_at_beginning(value)
+for i in range(n):
+    value = input(f"Enter value {i + 1} to insert at the end: ")
+    dll.insert_at_end(value)
+dll.traverse()
+search_key = input("Enter the element you want to search for: ")
+if dll.search(search_key):
+    print(f"The element '{search_key}' is present in the list.")
+else:
+    print(f"The element '{search_key}' is not present in the list.")
+```
 ## Sample Output
+![image](https://github.com/user-attachments/assets/5efdab51-de19-420b-a63f-510e4cc0dd99)
 
 ## Result
 
+Thus the program has been executed successfully.
